@@ -22,8 +22,29 @@ function print_tab_string(str, res) {
 	res.appendChild(pretext);
 }
 
-function brackets(weight, cost, size) {
-	
+function brackets(weight, cost, x, y, res) {
+	console.log(x + " " + y);
+	let str = "";
+	let d = 0;
+	if(x == 0) {
+		return weight[0][y];
+	}
+	if(x == 1) {
+		return weight[0][y] + " + " + weight[0][y + 1];
+	}
+	let min = cost[x - 1][y] + cost[0][x + y];
+	for(let k = 1; k < x; k++){
+		let val = cost[x - 1 - k][y] + cost[k][x + y - k];
+		if (min > val) {
+			min = val;
+			d = k;
+		}
+	}
+	print_string(weight[x][y] 
+		+ " = (" + (x - 1 - d) + "," + y  + ") + (" + d + "," + (x + y - d)
+		+ ") = " + weight[x - 1 - d][y]  + " + " + weight[d][x + y - d],
+		res);
+	return "(" + brackets(weight, cost, (x - 1 - d), y, res) + ") + (" + brackets(weight, cost, d, (x + y - d), res) + ")";
 }
 
 function alpha_tree(w, res) {
@@ -77,8 +98,7 @@ function alpha_tree(w, res) {
 	}
 	
 	// Расставляем скобки
-	let str = brackets(weight, cost, w.length);
-	
-	//print_string("Ответ: " + solution[weight.length][size], res);
-	print_string("", res);
+	print_string("Это для проверки <^,,^>", res);
+	let str = brackets(weight, cost, w.length - 1, 0, res);
+	print_string("Ответ: " + weight[w.length - 1][0] + " = " + str, res);
 }
