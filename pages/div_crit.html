@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Проверка делимости</title>
+		<link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+	</head>
+	<script>
+		function calculate() {
+			N = parseInt(document.getElementById("inputN").value);
+			D = parseInt(document.getElementById("inputD").value);
+			
+			let res = document.getElementById("intro");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			
+			res.appendChild(document.createTextNode("Проверка делимости " + N + " на " + D));
+			res.appendChild(document.createElement("br"));
+			res.appendChild(document.createTextNode("Целая часть от деления: " + Math.floor(N / D)));
+			res.appendChild(document.createElement("br"));
+			res.appendChild(document.createTextNode("Остаток от деления: " + N % D));
+			res.appendChild(document.createElement("br"));
+			
+			// Решаем всеми известными методами
+			pascal();
+			firstMethod();
+			secondMethod();
+			thirdMethod();
+		}
+	</script>
+	<body>
+		<p><a href="index.html">Назад</a></p>
+		Делимое: <input type="text" size="10" id="inputN" value="4088"> <br/>
+		Делитель: <input type="text" size="10" id="inputD" value="73"> <br/>
+		<br/>
+		<button onclick="calculate()">Вычислить</button>
+		<br/>
+		<br/>
+		<div style="float: left;clear: left">
+			<div class="deftext" id="intro"></div> <br/>
+			<div class="subtitle" id="pascalMethodTitle"></div> <br/>
+			<div class="hint" id="pascalMethodHint" ></div><br/>
+			<div class="deftext" id="pascalMethod" ></div><br/>
+			<div class="subtitle" id="firstMethodTitle"></div> <br/>
+			<div class="hint" id="firstMethodHint" ></div><br/>
+			<div class="deftext" id="firstMethod"></div> <br/>
+			<div class="subtitle" id="secondMethodTitle"></div> <br/>
+			<div class="hint" id="secondMethodHint" ></div><br/>
+			<div class="deftext" id="secondMethod"></div> <br/>
+			<div class="subtitle" id="thirdMethodTitle"></div> <br/>
+			<div class="hint" id="thirdMethodHint" ></div><br/>
+			<div class="deftext" id="thirdMethod"></div> <br/>
+		</div>
+		<script src="js/divisioncrit.js"></script>
+	</body>
+</html>

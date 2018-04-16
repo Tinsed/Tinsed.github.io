@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Умножение длинных чисел</title>
+		<link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+	</head>
+	<script>
+		function calculate() {
+			A = document.getElementById("inputA").value;
+			B = document.getElementById("inputB").value;
+			
+			let res = document.getElementById("multiplicationTitle");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			res.appendChild(document.createTextNode("Умножение " + A + " на " + B));	
+			
+			res = document.getElementById("multiplicationHint");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			res.appendChild(document.createTextNode("Метод повторяет действия при умножении столбиком, но является более компактным. "));
+			res.appendChild(document.createTextNode("Второе число переворачивается, а затем 'продвигается' вдоль первого числа, при этом цифры, оказавшиеся друг под другом, соответственно перемножаются и складываются. "));
+			res.appendChild(document.createTextNode("Последняя цифра полученной на каждом шаге суммы записывается в следующий разряд ответа, а остальное переносится на следующий шаг."));
+			res.appendChild(document.createElement("br"));
+			
+			res = document.getElementById("multiplicationText");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			
+			let ans = multiply(A, B, res);
+			if (ans != A*B) {
+				res.appendChild(document.createTextNode("Ошибка: решение не сошлось с правильным ответом!!!"));
+				res.appendChild(document.createElement("br"));
+				res.appendChild(document.createTextNode("Получилось: " + ans));
+				res.appendChild(document.createElement("br"));
+				res.appendChild(document.createTextNode("Ожидалось: " + A*B));
+				res.appendChild(document.createElement("br"));	
+			}
+			else {
+				res.appendChild(document.createTextNode("Ответ: " + ans));
+				res.appendChild(document.createElement("br"));
+			}
+		}
+	</script>
+	<body>
+		<div class="notstretch">
+		<p><a href="index.html">Назад</a></p>
+		A: <input type="text" size="10" id="inputA" value="85103"> <br/>
+		B: <input type="text" size="10" id="inputB" value="523"> <br/>
+		<br/>
+		<button onclick="calculate()">Умножить</button>
+		<br/>
+		<br/>
+			<div class="subtitle" id="multiplicationTitle"></div> <br/>
+			<div class="hint" id="multiplicationHint" ></div><br/>
+			<div class="monowidth" id="multiplicationText"></div> <br/>
+		</div>
+		<script src="js/multiply.js"></script>
+	</body>
+</html>

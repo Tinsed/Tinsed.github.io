@@ -1,0 +1,24 @@
+.subtitle {
+	color:red; 
+	font-weight: bold;
+	font-size: 100%;
+}
+.deftext {
+	color:black;
+	font-size: 100%;
+}
+.hint {
+	color:#33CC00;
+	font-weight: bold;
+	font-size: 100%;
+}
+.monowidth {
+	color:black;
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	font-size: 100%;
+}
+.notstretch {
+	float: left;
+	clear: left;
+	width: 35%;
+}

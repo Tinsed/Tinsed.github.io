@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<TITLE>Американский метод вычисления определителя</TITLE>
+		<link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+	</HEAD>
+
+	<SCRIPT> 		
+		function calculate() {
+			let size = parseInt(document.getElementById("inputN").value, 10);
+			let strMatrix  = document.getElementById("inputMatrix").value;
+			
+			let items = createArray(size, size);
+			let rows = strMatrix.split('/');
+			for (let i = 0; i < size; i++) {
+				let columns = rows[i].split(' ');
+				for (let j = 0; j < size; j++)
+					items[i][j] = parseInt(columns[j], 10);
+			}
+			
+			let res = document.getElementById("americanoTitle");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			res.appendChild(document.createTextNode("Вычисление определителя матрицы американским методом"));
+			
+			res = document.getElementById("americanoHint");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			res.appendChild(document.createTextNode("Если вы получаете ответ zero_division, значит во внутренней части одной из матриц есть нули. "));
+			res.appendChild(document.createTextNode("Переставьте строчку/столбец с нулём с любой крайней строчкой/столбцом, но учтите, что ответ поменяет знак. "));
+			res.appendChild(document.createTextNode("Либо прибавьте к строчке/столбцу с нулём любую другую строчку/столбец, тогда знак ответа не изменится."));
+			
+			res = document.getElementById("americanoText");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			res.appendChild(document.createTextNode("Ответ: " +
+				condensate(items, size, res)));
+		}
+	</SCRIPT>
+	
+	<BODY>
+		<p><a href="index.html">Назад</a></p>
+		Размерность матрицы: <input type="text" size="3" id="inputN" value="4"> <br/>
+		<textarea rows="12" cols="50" id="inputMatrix">-2 -1 -1 -4/
+-1 -2 -1 -6/
+-1 -1 2 4/
+2 1 -3 -8</textarea>
+		<br/>
+		<button onclick="calculate()">Вычислить</button>
+		<br/>
+		<br/>
+		<div class="notstretch">
+			<div class="subtitle" id="americanoTitle"></div> <br/>
+			<div class="hint" id="americanoHint" ></div><br/>
+			<div class="deftext" id="americanoText" ></div><br/>
+		</div>
+		<script src="js/americano.js"></script>
+	</BODY>
+
+</HTML>
