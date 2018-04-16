@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Динамическое программирование и жадные алгоритмы</title>
+		<link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+	</head>
+	<script>
+		function calculate() {			
+			var w = document.getElementById("inputW").value.split(' ');
+			var v = document.getElementById("inputV").value.split(' ');
+			var size = parseInt(document.getElementById("inputSize").value, 10);
+			
+			for (let i = 0; i < w.length; i++) {
+				w[i] = parseInt(w[i], 10);
+				v[i] = parseInt(v[i], 10);
+			}
+			
+			let res = document.getElementById("dynProg");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			
+			greedy(w.slice(), v.slice(), size, res);
+			
+			dyn_prog(w.slice(), v.slice(), size, res);
+		}
+	</script>
+	<body>
+		<p><a href="index.html">Назад</a></p>
+		Веса: <input type="text" size="20" id="inputW" value="4 6 5 4 4 2"> <br/>
+		Стоимости: <input type="text" size="20" id="inputV" value="16 6 15 24 8 6"> <br/>
+		Размер рюкзака: <input type="text" size="5" id="inputSize" value="12"> <br/>
+		<br/>
+		<button onclick="calculate()">Вычислить</button>
+		<br/>
+		<br/>
+		<div style="float: left;clear: left">
+			<div class="deftext" id="dynProg" ></div><br/>
+		</div>
+		<script src="js/dyn_prog.js"></script>
+	</body>
+</html>
