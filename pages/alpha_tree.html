@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Алфавитное дерево минимальной стоимости</title>
+		<link rel="stylesheet" type="text/css" href="../css/mainstyle.css">
+	</head>
+	<script>
+		function calculate() {			
+			var w = document.getElementById("inputW").value.split(' ');
+			
+			for (let i = 0; i < w.length; i++) {
+				w[i] = parseInt(w[i], 10);
+			}
+			
+			let res = document.getElementById("alpha_tree");
+			while (res.firstChild) res.removeChild(res.firstChild);
+			
+			alpha_tree(w.slice(), res);
+		}
+	</script>
+	<body>
+		<p><a href="../index.html">Назад</a></p>
+		Веса: <input type="text" size="20" id="inputW" value="4 6 5 4 4 2"> <br/>
+		<br/>
+		<button onclick="calculate()">Вычислить</button>
+		<br/>
+		<br/>
+		<div style="float: left;clear: left">
+			<div class="deftext" id="alpha_tree" ></div><br/>
+		</div>
+		<script src="../js/alpha_tree.js"></script>
+	</body>
+</html>
