@@ -49,7 +49,7 @@ const printInputData = (arr) =>{
     str = "w:\t";
     arr.forEach((item) => str+=`${item.w}\t`);
     print_tab_string(str);
-    str = "v:\t";
+    str = "v/w:\t";
     arr.forEach((item) => str+=`${item.vw}\t`);
     print_tab_string(str);
 };
