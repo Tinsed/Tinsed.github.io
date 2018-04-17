@@ -2,11 +2,15 @@ let bounds = [];
 
 let currentNode = {};
 let answer = {};
-let max = 0;
+let max = -1;
 let res;
 
 const branchAndBound = (w, v, limitWeight, _res) => {
+    answer = {};
+    bounds = [];
+    max = -1;
     res = _res;
+
     let arr = [];
     for(let i = 0; i < w.length; i++){
         arr[i] = {w: w[i], v: v[i], vw: v[i]/w[i]};
@@ -21,11 +25,33 @@ const branchAndBound = (w, v, limitWeight, _res) => {
         bounds = [data.values[i] + (bounds[0] || 0)].concat(bounds);
     }
 
+    printInputData(arr);
+    print_string("");
+    print_string("Решение:");
     deepDarkFantasies([], 0, data.weights, data.values, data.limitWeight);
 
     print_string("");
     print_string("Ответ:");
     printCurrentPosition(answer, answer.length);
+};
+
+const printInputData = (arr) =>{
+    function print_tab_string(str) {
+        let pretext = document.createElement("pre");
+        pretext.appendChild(document.createTextNode(str));
+        res.appendChild(pretext);
+    }
+
+    print_string("Отсортированные входные данные:");
+    let str = "i:\t";
+    arr.forEach((item, index) => str+=`${index + 1}\t`);
+    print_tab_string(str);
+    str = "w:\t";
+    arr.forEach((item) => str+=`${item.w}\t`);
+    print_tab_string(str);
+    str = "v:\t";
+    arr.forEach((item) => str+=`${item.vw}\t`);
+    print_tab_string(str);
 };
 
 const validate = (tempArr,weights,limitWeight) => {
